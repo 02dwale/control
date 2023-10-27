@@ -1,0 +1,92 @@
+ARM GAS  C:\Users\Mark\AppData\Local\Temp\ccgNXJaw.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"gpio.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "Core/Src/gpio.c"
+  18              		.section	.text.GPIOC_13_CFG_Output,"ax",%progbits
+  19              		.align	1
+  20              		.global	GPIOC_13_CFG_Output
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	GPIOC_13_CFG_Output:
+  26              	.LFB65:
+   1:Core/Src/gpio.c **** /* IN file RCC enable clocking of gpio block. */
+   2:Core/Src/gpio.c **** 
+   3:Core/Src/gpio.c **** #include "stm32f103xb.h" /* Define base adress and base structures of registers */
+   4:Core/Src/gpio.c **** #include "gpio.h"       /* Declare of functions defining in this file */
+   5:Core/Src/gpio.c **** #include "macro.h"      /* Including  stdint.h*/
+   6:Core/Src/gpio.c **** 
+   7:Core/Src/gpio.c **** void GPIOC_13_CFG_Output(void) 
+   8:Core/Src/gpio.c **** {
+  27              		.loc 1 8 1 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              		@ link register save eliminated.
+   9:Core/Src/gpio.c ****     /*Configuration pin C13 in "01 - " General purpose output: Open-drain"*/
+  10:Core/Src/gpio.c ****     CLEAR_BIT(GPIOC->CRH, GPIO_CRH_CNF13_1); /* Reset first bit of Configuration flag of 13 pin of 
+  32              		.loc 1 10 5 view .LVU1
+  33 0000 084B     		ldr	r3, .L2
+  34 0002 5A68     		ldr	r2, [r3, #4]
+  35 0004 22F40002 		bic	r2, r2, #8388608
+  36 0008 5A60     		str	r2, [r3, #4]
+  11:Core/Src/gpio.c ****     SET_BIT(GPIOC->CRH, GPIO_CRH_CNF13_0);   /* Set second bit of flag 13 pin in Config Register Hi
+  37              		.loc 1 11 5 view .LVU2
+  38 000a 5A68     		ldr	r2, [r3, #4]
+  39 000c 42F48002 		orr	r2, r2, #4194304
+  40 0010 5A60     		str	r2, [r3, #4]
+  12:Core/Src/gpio.c ****     
+  13:Core/Src/gpio.c ****     /*Configuration pin C13 in  01 - "Output MODE 10 MHz" */
+  14:Core/Src/gpio.c ****     CLEAR_BIT(GPIOC->CRH, GPIO_CRH_MODE13_1); /* Reset first bit of mode flag of 13 pin in CRG (7-1
+  41              		.loc 1 14 5 view .LVU3
+  42 0012 5A68     		ldr	r2, [r3, #4]
+  43 0014 22F40012 		bic	r2, r2, #2097152
+  44 0018 5A60     		str	r2, [r3, #4]
+ARM GAS  C:\Users\Mark\AppData\Local\Temp\ccgNXJaw.s 			page 2
+
+
+  15:Core/Src/gpio.c ****     SET_BIT(GPIOC->CRH, GPIO_CRH_MODE13_0);   /* Reset first bit of mode flag of 13 pin in CRG (7-1
+  45              		.loc 1 15 5 view .LVU4
+  46 001a 5A68     		ldr	r2, [r3, #4]
+  47 001c 42F48012 		orr	r2, r2, #1048576
+  48 0020 5A60     		str	r2, [r3, #4]
+  16:Core/Src/gpio.c **** }
+  49              		.loc 1 16 1 is_stmt 0 view .LVU5
+  50 0022 7047     		bx	lr
+  51              	.L3:
+  52              		.align	2
+  53              	.L2:
+  54 0024 00100140 		.word	1073811456
+  55              		.cfi_endproc
+  56              	.LFE65:
+  58              		.text
+  59              	.Letext0:
+  60              		.file 2 "c:\\users\\mark\\scoop\\apps\\gcc-arm-none-eabi\\current\\arm-none-eabi\\include\\machine
+  61              		.file 3 "c:\\users\\mark\\scoop\\apps\\gcc-arm-none-eabi\\current\\arm-none-eabi\\include\\sys\\_s
+  62              		.file 4 "Core/Inc/stm32f103xb.h"
+ARM GAS  C:\Users\Mark\AppData\Local\Temp\ccgNXJaw.s 			page 3
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 gpio.c
+C:\Users\Mark\AppData\Local\Temp\ccgNXJaw.s:19     .text.GPIOC_13_CFG_Output:00000000 $t
+C:\Users\Mark\AppData\Local\Temp\ccgNXJaw.s:25     .text.GPIOC_13_CFG_Output:00000000 GPIOC_13_CFG_Output
+C:\Users\Mark\AppData\Local\Temp\ccgNXJaw.s:54     .text.GPIOC_13_CFG_Output:00000024 $d
+
+NO UNDEFINED SYMBOLS

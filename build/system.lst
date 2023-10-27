@@ -1,0 +1,369 @@
+ARM GAS  C:\Users\Mark\AppData\Local\Temp\ccA7GTDw.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"system.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "Core/Src/system.c"
+  18              		.section	.text.SystemInit,"ax",%progbits
+  19              		.align	1
+  20              		.global	SystemInit
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	SystemInit:
+  26              	.LFB65:
+   1:Core/Src/system.c **** /* This file describes SystemInit(), SystemCoreClock variable and SystemCoreClockUpdate() 
+   2:Core/Src/system.c **** * Note: SystemInit() calls before main() from startup file. 
+   3:Core/Src/system.c **** */
+   4:Core/Src/system.c ****   
+   5:Core/Src/system.c **** #include "stm32f103xb.h"
+   6:Core/Src/system.c **** #include "system.h"
+   7:Core/Src/system.c **** #include "macro.h"
+   8:Core/Src/system.c **** #include <stdint.h>
+   9:Core/Src/system.c **** 
+  10:Core/Src/system.c **** #if !defined  (HSE_VALUE) 
+  11:Core/Src/system.c ****   #define HSE_VALUE               8000000U /* Default value of the External oscillator in Hz. */   
+  12:Core/Src/system.c **** #endif
+  13:Core/Src/system.c **** 
+  14:Core/Src/system.c **** #if !defined  (HSI_VALUE)
+  15:Core/Src/system.c ****   #define HSI_VALUE               8000000U /* Default value of the Internal oscillator in Hz. */   
+  16:Core/Src/system.c **** #endif
+  17:Core/Src/system.c **** 
+  18:Core/Src/system.c **** uint32_t SystemCoreClock;
+  19:Core/Src/system.c **** const uint8_t AHBPrescTable[16U] = {0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 6, 7, 8, 9}; //Powers of 2
+  20:Core/Src/system.c **** const uint8_t APBPrescTable[8U] =  {0, 0, 0, 0, 1, 2, 3, 4};
+  21:Core/Src/system.c **** 
+  22:Core/Src/system.c **** 
+  23:Core/Src/system.c **** /* SystemInit() - Setup the MCU system */
+  24:Core/Src/system.c **** 
+  25:Core/Src/system.c **** void SystemInit(void)
+  26:Core/Src/system.c **** {
+  27              		.loc 1 26 1 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              		@ link register save eliminated.
+  27:Core/Src/system.c **** 
+ARM GAS  C:\Users\Mark\AppData\Local\Temp\ccA7GTDw.s 			page 2
+
+
+  28:Core/Src/system.c **** }  
+  32              		.loc 1 28 1 view .LVU1
+  33 0000 7047     		bx	lr
+  34              		.cfi_endproc
+  35              	.LFE65:
+  37              		.section	.text.SystemCoreClockUpdate,"ax",%progbits
+  38              		.align	1
+  39              		.global	SystemCoreClockUpdate
+  40              		.syntax unified
+  41              		.thumb
+  42              		.thumb_func
+  44              	SystemCoreClockUpdate:
+  45              	.LFB66:
+  29:Core/Src/system.c **** 
+  30:Core/Src/system.c **** 
+  31:Core/Src/system.c **** 
+  32:Core/Src/system.c **** /* SystemCoreClockUpdate() - Update SystemCoreClock global variable according to clock register val
+  33:Core/Src/system.c **** 
+  34:Core/Src/system.c **** void SystemCoreClockUpdate (void)
+  35:Core/Src/system.c **** {
+  46              		.loc 1 35 1 view -0
+  47              		.cfi_startproc
+  48              		@ args = 0, pretend = 0, frame = 0
+  49              		@ frame_needed = 0, uses_anonymous_args = 0
+  50              		@ link register save eliminated.
+  36:Core/Src/system.c ****   uint32_t tmp = 0U, pllmull = 0U, pllsource = 0U;
+  51              		.loc 1 36 3 view .LVU3
+  52              	.LVL0:
+  37:Core/Src/system.c **** 
+  38:Core/Src/system.c ****   /* Get SYSCLK source -------------------------------------------------------*/
+  39:Core/Src/system.c ****   
+  40:Core/Src/system.c ****   tmp = RCC->CFGR & RCC_CFGR_SWS; /* SWS - system clock switch status */
+  53              		.loc 1 40 3 view .LVU4
+  54              		.loc 1 40 12 is_stmt 0 view .LVU5
+  55 0000 1F4B     		ldr	r3, .L10
+  56 0002 5B68     		ldr	r3, [r3, #4]
+  57              		.loc 1 40 7 view .LVU6
+  58 0004 03F00C03 		and	r3, r3, #12
+  59              	.LVL1:
+  41:Core/Src/system.c **** 
+  42:Core/Src/system.c ****   switch (tmp)
+  60              		.loc 1 42 3 is_stmt 1 view .LVU7
+  61 0008 042B     		cmp	r3, #4
+  62 000a 14D0     		beq	.L3
+  63 000c 082B     		cmp	r3, #8
+  64 000e 16D0     		beq	.L4
+  65 0010 1BB1     		cbz	r3, .L9
+  43:Core/Src/system.c ****   {
+  44:Core/Src/system.c ****     case 0x00U:  /* HSI used as system clock */
+  45:Core/Src/system.c ****       SystemCoreClock = HSI_VALUE;
+  46:Core/Src/system.c ****       break;
+  47:Core/Src/system.c ****     case 0x04U:  /* HSE used as system clock */
+  48:Core/Src/system.c ****       SystemCoreClock = HSE_VALUE;
+  49:Core/Src/system.c ****       break;
+  50:Core/Src/system.c ****     case 0x08U:  /* PLL used as system clock */
+  51:Core/Src/system.c **** 
+  52:Core/Src/system.c ****       /* Get PLL clock source and multiplication factor ----------------------*/
+ARM GAS  C:\Users\Mark\AppData\Local\Temp\ccA7GTDw.s 			page 3
+
+
+  53:Core/Src/system.c ****       pllmull = RCC->CFGR & RCC_CFGR_PLLMULL; /* PLL multiplication factor */
+  54:Core/Src/system.c ****       pllsource = RCC->CFGR & RCC_CFGR_PLLSRC; /* PLL entry clock source*/
+  55:Core/Src/system.c ****       
+  56:Core/Src/system.c ****       pllmull = ( pllmull >> 18U) + 2U; //If PLLMUL has 0000 then we multiply by 2 by default
+  57:Core/Src/system.c ****       
+  58:Core/Src/system.c ****       /* Source of PLLmul*/
+  59:Core/Src/system.c ****       if (pllsource == 0x00U)
+  60:Core/Src/system.c ****       {
+  61:Core/Src/system.c ****         /* HSI oscillator is a source for PLL, HSI clock divided by 2 selected as PLL clock entry *
+  62:Core/Src/system.c ****         SystemCoreClock = (HSI_VALUE >> 1U) * pllmull;
+  63:Core/Src/system.c ****       }
+  64:Core/Src/system.c ****       else
+  65:Core/Src/system.c ****       {
+  66:Core/Src/system.c ****         /* HSE selected as PLL clock entry */
+  67:Core/Src/system.c ****         if ((RCC->CFGR & RCC_CFGR_PLLXTPRE) != (uint32_t) RESET)
+  68:Core/Src/system.c ****         {
+  69:Core/Src/system.c ****           /* HSE oscillator clock divided by 2 */
+  70:Core/Src/system.c ****           SystemCoreClock = (HSE_VALUE >> 1U) * pllmull;
+  71:Core/Src/system.c ****         }
+  72:Core/Src/system.c ****         else
+  73:Core/Src/system.c ****         {
+  74:Core/Src/system.c ****           SystemCoreClock = HSE_VALUE * pllmull;
+  75:Core/Src/system.c ****         }
+  76:Core/Src/system.c ****       }
+  77:Core/Src/system.c ****       break;
+  78:Core/Src/system.c **** 
+  79:Core/Src/system.c ****     default:
+  80:Core/Src/system.c ****       SystemCoreClock = HSI_VALUE;
+  66              		.loc 1 80 7 view .LVU8
+  67              		.loc 1 80 23 is_stmt 0 view .LVU9
+  68 0012 1C4B     		ldr	r3, .L10+4
+  69              	.LVL2:
+  70              		.loc 1 80 23 view .LVU10
+  71 0014 1C4A     		ldr	r2, .L10+8
+  72 0016 1A60     		str	r2, [r3]
+  81:Core/Src/system.c ****       break;
+  73              		.loc 1 81 7 is_stmt 1 view .LVU11
+  74 0018 02E0     		b	.L6
+  75              	.LVL3:
+  76              	.L9:
+  45:Core/Src/system.c ****       break;
+  77              		.loc 1 45 7 view .LVU12
+  45:Core/Src/system.c ****       break;
+  78              		.loc 1 45 23 is_stmt 0 view .LVU13
+  79 001a 1A4B     		ldr	r3, .L10+4
+  80              	.LVL4:
+  45:Core/Src/system.c ****       break;
+  81              		.loc 1 45 23 view .LVU14
+  82 001c 1A4A     		ldr	r2, .L10+8
+  83 001e 1A60     		str	r2, [r3]
+  46:Core/Src/system.c ****     case 0x04U:  /* HSE used as system clock */
+  84              		.loc 1 46 7 is_stmt 1 view .LVU15
+  85              	.LVL5:
+  86              	.L6:
+  82:Core/Src/system.c ****   }
+  83:Core/Src/system.c ****   
+  84:Core/Src/system.c ****   /* Compute HCLK clock frequency ---------------------------*/
+ARM GAS  C:\Users\Mark\AppData\Local\Temp\ccA7GTDw.s 			page 4
+
+
+  85:Core/Src/system.c ****   /* Get HCLK prescaler */
+  86:Core/Src/system.c ****   tmp = AHBPrescTable[((RCC->CFGR & RCC_CFGR_HPRE) >> 4U)]; //4U - its POS of the BIT MASK HPRE fla
+  87              		.loc 1 86 3 view .LVU16
+  88              		.loc 1 86 28 is_stmt 0 view .LVU17
+  89 0020 174B     		ldr	r3, .L10
+  90 0022 5B68     		ldr	r3, [r3, #4]
+  91              		.loc 1 86 52 view .LVU18
+  92 0024 C3F30313 		ubfx	r3, r3, #4, #4
+  93              		.loc 1 86 22 view .LVU19
+  94 0028 184A     		ldr	r2, .L10+12
+  95 002a D15C     		ldrb	r1, [r2, r3]	@ zero_extendqisi2
+  96              	.LVL6:
+  87:Core/Src/system.c ****   /* HCLK clock frequency */
+  88:Core/Src/system.c ****   SystemCoreClock >>= tmp;  //Divide of core clock by tmp
+  97              		.loc 1 88 3 is_stmt 1 view .LVU20
+  98              		.loc 1 88 19 is_stmt 0 view .LVU21
+  99 002c 154A     		ldr	r2, .L10+4
+ 100 002e 1368     		ldr	r3, [r2]
+ 101 0030 CB40     		lsrs	r3, r3, r1
+ 102 0032 1360     		str	r3, [r2]
+  89:Core/Src/system.c **** }
+ 103              		.loc 1 89 1 view .LVU22
+ 104 0034 7047     		bx	lr
+ 105              	.LVL7:
+ 106              	.L3:
+  48:Core/Src/system.c ****       break;
+ 107              		.loc 1 48 7 is_stmt 1 view .LVU23
+  48:Core/Src/system.c ****       break;
+ 108              		.loc 1 48 23 is_stmt 0 view .LVU24
+ 109 0036 134B     		ldr	r3, .L10+4
+ 110              	.LVL8:
+  48:Core/Src/system.c ****       break;
+ 111              		.loc 1 48 23 view .LVU25
+ 112 0038 134A     		ldr	r2, .L10+8
+ 113 003a 1A60     		str	r2, [r3]
+  49:Core/Src/system.c ****     case 0x08U:  /* PLL used as system clock */
+ 114              		.loc 1 49 7 is_stmt 1 view .LVU26
+ 115 003c F0E7     		b	.L6
+ 116              	.LVL9:
+ 117              	.L4:
+  53:Core/Src/system.c ****       pllsource = RCC->CFGR & RCC_CFGR_PLLSRC; /* PLL entry clock source*/
+ 118              		.loc 1 53 7 view .LVU27
+  53:Core/Src/system.c ****       pllsource = RCC->CFGR & RCC_CFGR_PLLSRC; /* PLL entry clock source*/
+ 119              		.loc 1 53 20 is_stmt 0 view .LVU28
+ 120 003e 104A     		ldr	r2, .L10
+ 121 0040 5368     		ldr	r3, [r2, #4]
+ 122              	.LVL10:
+  54:Core/Src/system.c ****       
+ 123              		.loc 1 54 7 is_stmt 1 view .LVU29
+  54:Core/Src/system.c ****       
+ 124              		.loc 1 54 22 is_stmt 0 view .LVU30
+ 125 0042 5268     		ldr	r2, [r2, #4]
+ 126              	.LVL11:
+  56:Core/Src/system.c ****       
+ 127              		.loc 1 56 7 is_stmt 1 view .LVU31
+  56:Core/Src/system.c ****       
+ 128              		.loc 1 56 27 is_stmt 0 view .LVU32
+ARM GAS  C:\Users\Mark\AppData\Local\Temp\ccA7GTDw.s 			page 5
+
+
+ 129 0044 C3F38343 		ubfx	r3, r3, #18, #4
+ 130              	.LVL12:
+  56:Core/Src/system.c ****       
+ 131              		.loc 1 56 15 view .LVU33
+ 132 0048 0233     		adds	r3, r3, #2
+ 133              	.LVL13:
+  59:Core/Src/system.c ****       {
+ 134              		.loc 1 59 7 is_stmt 1 view .LVU34
+  59:Core/Src/system.c ****       {
+ 135              		.loc 1 59 10 is_stmt 0 view .LVU35
+ 136 004a 12F4803F 		tst	r2, #65536
+ 137 004e 05D1     		bne	.L7
+  62:Core/Src/system.c ****       }
+ 138              		.loc 1 62 9 is_stmt 1 view .LVU36
+  62:Core/Src/system.c ****       }
+ 139              		.loc 1 62 45 is_stmt 0 view .LVU37
+ 140 0050 0F4A     		ldr	r2, .L10+16
+ 141              	.LVL14:
+  62:Core/Src/system.c ****       }
+ 142              		.loc 1 62 45 view .LVU38
+ 143 0052 02FB03F3 		mul	r3, r2, r3
+ 144              	.LVL15:
+  62:Core/Src/system.c ****       }
+ 145              		.loc 1 62 25 view .LVU39
+ 146 0056 0B4A     		ldr	r2, .L10+4
+ 147 0058 1360     		str	r3, [r2]
+ 148 005a E1E7     		b	.L6
+ 149              	.LVL16:
+ 150              	.L7:
+  67:Core/Src/system.c ****         {
+ 151              		.loc 1 67 9 is_stmt 1 view .LVU40
+  67:Core/Src/system.c ****         {
+ 152              		.loc 1 67 17 is_stmt 0 view .LVU41
+ 153 005c 084A     		ldr	r2, .L10
+ 154              	.LVL17:
+  67:Core/Src/system.c ****         {
+ 155              		.loc 1 67 17 view .LVU42
+ 156 005e 5268     		ldr	r2, [r2, #4]
+  67:Core/Src/system.c ****         {
+ 157              		.loc 1 67 12 view .LVU43
+ 158 0060 12F4003F 		tst	r2, #131072
+ 159 0064 05D0     		beq	.L8
+  70:Core/Src/system.c ****         }
+ 160              		.loc 1 70 11 is_stmt 1 view .LVU44
+  70:Core/Src/system.c ****         }
+ 161              		.loc 1 70 47 is_stmt 0 view .LVU45
+ 162 0066 0A4A     		ldr	r2, .L10+16
+ 163 0068 02FB03F3 		mul	r3, r2, r3
+ 164              	.LVL18:
+  70:Core/Src/system.c ****         }
+ 165              		.loc 1 70 27 view .LVU46
+ 166 006c 054A     		ldr	r2, .L10+4
+ 167 006e 1360     		str	r3, [r2]
+ 168 0070 D6E7     		b	.L6
+ 169              	.LVL19:
+ 170              	.L8:
+  74:Core/Src/system.c ****         }
+ARM GAS  C:\Users\Mark\AppData\Local\Temp\ccA7GTDw.s 			page 6
+
+
+ 171              		.loc 1 74 11 is_stmt 1 view .LVU47
+  74:Core/Src/system.c ****         }
+ 172              		.loc 1 74 39 is_stmt 0 view .LVU48
+ 173 0072 054A     		ldr	r2, .L10+8
+ 174 0074 02FB03F3 		mul	r3, r2, r3
+ 175              	.LVL20:
+  74:Core/Src/system.c ****         }
+ 176              		.loc 1 74 27 view .LVU49
+ 177 0078 024A     		ldr	r2, .L10+4
+ 178 007a 1360     		str	r3, [r2]
+ 179 007c D0E7     		b	.L6
+ 180              	.L11:
+ 181 007e 00BF     		.align	2
+ 182              	.L10:
+ 183 0080 00100240 		.word	1073876992
+ 184 0084 00000000 		.word	SystemCoreClock
+ 185 0088 00127A00 		.word	8000000
+ 186 008c 00000000 		.word	AHBPrescTable
+ 187 0090 00093D00 		.word	4000000
+ 188              		.cfi_endproc
+ 189              	.LFE66:
+ 191              		.global	APBPrescTable
+ 192              		.section	.rodata.APBPrescTable,"a"
+ 193              		.align	2
+ 196              	APBPrescTable:
+ 197 0000 00000000 		.ascii	"\000\000\000\000\001\002\003\004"
+ 197      01020304 
+ 198              		.global	AHBPrescTable
+ 199              		.section	.rodata.AHBPrescTable,"a"
+ 200              		.align	2
+ 203              	AHBPrescTable:
+ 204 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\001\002\003\004\006"
+ 204      00000000 
+ 204      01020304 
+ 204      06
+ 205 000d 070809   		.ascii	"\007\010\011"
+ 206              		.global	SystemCoreClock
+ 207              		.section	.bss.SystemCoreClock,"aw",%nobits
+ 208              		.align	2
+ 211              	SystemCoreClock:
+ 212 0000 00000000 		.space	4
+ 213              		.text
+ 214              	.Letext0:
+ 215              		.file 2 "c:\\users\\mark\\scoop\\apps\\gcc-arm-none-eabi\\current\\arm-none-eabi\\include\\machine
+ 216              		.file 3 "c:\\users\\mark\\scoop\\apps\\gcc-arm-none-eabi\\current\\arm-none-eabi\\include\\sys\\_s
+ 217              		.file 4 "Core/Inc/stm32f103xb.h"
+ 218              		.file 5 "Core/Inc/system.h"
+ 219              		.file 6 "Core/Inc/macro.h"
+ARM GAS  C:\Users\Mark\AppData\Local\Temp\ccA7GTDw.s 			page 7
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 system.c
+C:\Users\Mark\AppData\Local\Temp\ccA7GTDw.s:19     .text.SystemInit:00000000 $t
+C:\Users\Mark\AppData\Local\Temp\ccA7GTDw.s:25     .text.SystemInit:00000000 SystemInit
+C:\Users\Mark\AppData\Local\Temp\ccA7GTDw.s:38     .text.SystemCoreClockUpdate:00000000 $t
+C:\Users\Mark\AppData\Local\Temp\ccA7GTDw.s:44     .text.SystemCoreClockUpdate:00000000 SystemCoreClockUpdate
+C:\Users\Mark\AppData\Local\Temp\ccA7GTDw.s:183    .text.SystemCoreClockUpdate:00000080 $d
+C:\Users\Mark\AppData\Local\Temp\ccA7GTDw.s:211    .bss.SystemCoreClock:00000000 SystemCoreClock
+C:\Users\Mark\AppData\Local\Temp\ccA7GTDw.s:203    .rodata.AHBPrescTable:00000000 AHBPrescTable
+C:\Users\Mark\AppData\Local\Temp\ccA7GTDw.s:196    .rodata.APBPrescTable:00000000 APBPrescTable
+C:\Users\Mark\AppData\Local\Temp\ccA7GTDw.s:193    .rodata.APBPrescTable:00000000 $d
+C:\Users\Mark\AppData\Local\Temp\ccA7GTDw.s:200    .rodata.AHBPrescTable:00000000 $d
+C:\Users\Mark\AppData\Local\Temp\ccA7GTDw.s:208    .bss.SystemCoreClock:00000000 $d
+
+NO UNDEFINED SYMBOLS

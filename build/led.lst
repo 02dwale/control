@@ -1,0 +1,74 @@
+ARM GAS  C:\Users\Mark\AppData\Local\Temp\cc6HB3dz.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"led.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "Core/Src/led.c"
+  18              		.section	.text.GPIOC_13_Toggle,"ax",%progbits
+  19              		.align	1
+  20              		.global	GPIOC_13_Toggle
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	GPIOC_13_Toggle:
+  26              	.LFB65:
+   1:Core/Src/led.c **** /* File of the functional program */
+   2:Core/Src/led.c **** 
+   3:Core/Src/led.c **** #include "stm32f103xb.h"
+   4:Core/Src/led.c **** #include "macro.h"
+   5:Core/Src/led.c **** 
+   6:Core/Src/led.c **** void GPIOC_13_Toggle(void)
+   7:Core/Src/led.c **** {
+  27              		.loc 1 7 1 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              		@ link register save eliminated.
+   8:Core/Src/led.c ****     /* Outup data register 13 Pin INVERT by XOR (^) operator*/
+   9:Core/Src/led.c ****     TOGGLE_BIT(GPIOC->ODR, GPIO_ODR_ODR13);
+  32              		.loc 1 9 5 view .LVU1
+  33 0000 024A     		ldr	r2, .L2
+  34 0002 D368     		ldr	r3, [r2, #12]
+  35 0004 83F40053 		eor	r3, r3, #8192
+  36 0008 D360     		str	r3, [r2, #12]
+  10:Core/Src/led.c **** }...
+  37              		.loc 1 10 1 is_stmt 0 view .LVU2
+  38 000a 7047     		bx	lr
+  39              	.L3:
+  40              		.align	2
+  41              	.L2:
+  42 000c 00100140 		.word	1073811456
+  43              		.cfi_endproc
+  44              	.LFE65:
+  46              		.text
+  47              	.Letext0:
+  48              		.file 2 "c:\\users\\mark\\scoop\\apps\\gcc-arm-none-eabi\\current\\arm-none-eabi\\include\\machine
+  49              		.file 3 "c:\\users\\mark\\scoop\\apps\\gcc-arm-none-eabi\\current\\arm-none-eabi\\include\\sys\\_s
+ARM GAS  C:\Users\Mark\AppData\Local\Temp\cc6HB3dz.s 			page 2
+
+
+  50              		.file 4 "Core/Inc/stm32f103xb.h"
+ARM GAS  C:\Users\Mark\AppData\Local\Temp\cc6HB3dz.s 			page 3
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 led.c
+C:\Users\Mark\AppData\Local\Temp\cc6HB3dz.s:19     .text.GPIOC_13_Toggle:00000000 $t
+C:\Users\Mark\AppData\Local\Temp\cc6HB3dz.s:25     .text.GPIOC_13_Toggle:00000000 GPIOC_13_Toggle
+C:\Users\Mark\AppData\Local\Temp\cc6HB3dz.s:42     .text.GPIOC_13_Toggle:0000000c $d
+
+NO UNDEFINED SYMBOLS

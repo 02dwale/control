@@ -1,0 +1,110 @@
+ARM GAS  C:\Users\Mark\AppData\Local\Temp\ccg9l6Zs.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"main.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "Core/Src/main.c"
+  18              		.section	.text.main,"ax",%progbits
+  19              		.align	1
+  20              		.global	main
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  25              	main:
+  26              	.LFB65:
+   1:Core/Src/main.c **** /*
+   2:Core/Src/main.c ****   ******************************************************************************
+   3:Core/Src/main.c ****   * @file           : main.c
+   4:Core/Src/main.c ****   * @brief          : Main program body
+   5:Core/Src/main.c ****   *                     -SysTick interrupt every 1 millisecond call IncTick.
+   6:Core/Src/main.c ****   *                     -Freq SYSCLK = 72 MHz
+   7:Core/Src/main.c ****   *                     -AHB = 72 Mhz
+   8:Core/Src/main.c ****   *                     -APB1 = 36 Mhz, APB2 = 72 Mhz;
+   9:Core/Src/main.c ****   ******************************************************************************
+  10:Core/Src/main.c ****   */
+  11:Core/Src/main.c **** 
+  12:Core/Src/main.c **** #include "main.h"
+  13:Core/Src/main.c **** 
+  14:Core/Src/main.c **** int main(void)
+  15:Core/Src/main.c **** {
+  27              		.loc 1 15 1 view -0
+  28              		.cfi_startproc
+  29              		@ Volatile: function does not return.
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32 0000 08B5     		push	{r3, lr}
+  33              	.LCFI0:
+  34              		.cfi_def_cfa_offset 8
+  35              		.cfi_offset 3, -8
+  36              		.cfi_offset 14, -4
+  16:Core/Src/main.c ****   SystemClockConfig();
+  37              		.loc 1 16 3 view .LVU1
+  38 0002 FFF7FEFF 		bl	SystemClockConfig
+  39              	.LVL0:
+  17:Core/Src/main.c ****   RCC_LED();
+  40              		.loc 1 17 3 view .LVU2
+  41 0006 FFF7FEFF 		bl	RCC_LED
+ARM GAS  C:\Users\Mark\AppData\Local\Temp\ccg9l6Zs.s 			page 2
+
+
+  42              	.LVL1:
+  18:Core/Src/main.c ****   GPIOC_13_CFG_Output();
+  43              		.loc 1 18 3 view .LVU3
+  44 000a FFF7FEFF 		bl	GPIOC_13_CFG_Output
+  45              	.LVL2:
+  46              	.L2:
+  19:Core/Src/main.c ****   //__disable_irq(); 
+  20:Core/Src/main.c ****   
+  21:Core/Src/main.c ****   while (1)
+  47              		.loc 1 21 3 discriminator 1 view .LVU4
+  48              	.LBB2:
+  22:Core/Src/main.c ****   {
+  23:Core/Src/main.c ****     GPIOC_13_Toggle();
+  49              		.loc 1 23 5 discriminator 1 view .LVU5
+  50 000e FFF7FEFF 		bl	GPIOC_13_Toggle
+  51              	.LVL3:
+  24:Core/Src/main.c ****     Delay(1000);
+  52              		.loc 1 24 5 discriminator 1 view .LVU6
+  53 0012 4FF47A70 		mov	r0, #1000
+  54 0016 FFF7FEFF 		bl	Delay
+  55              	.LVL4:
+  56              	.LBE2:
+  21:Core/Src/main.c ****   {
+  57              		.loc 1 21 9 discriminator 1 view .LVU7
+  58 001a F8E7     		b	.L2
+  59              		.cfi_endproc
+  60              	.LFE65:
+  62              		.text
+  63              	.Letext0:
+  64              		.file 2 "c:\\users\\mark\\scoop\\apps\\gcc-arm-none-eabi\\current\\arm-none-eabi\\include\\machine
+  65              		.file 3 "c:\\users\\mark\\scoop\\apps\\gcc-arm-none-eabi\\current\\arm-none-eabi\\include\\sys\\_s
+  66              		.file 4 "Core/Inc/rcc.h"
+  67              		.file 5 "Core/Inc/gpio.h"
+ARM GAS  C:\Users\Mark\AppData\Local\Temp\ccg9l6Zs.s 			page 3
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\Mark\AppData\Local\Temp\ccg9l6Zs.s:19     .text.main:00000000 $t
+C:\Users\Mark\AppData\Local\Temp\ccg9l6Zs.s:25     .text.main:00000000 main
+
+UNDEFINED SYMBOLS
+SystemClockConfig
+RCC_LED
+GPIOC_13_CFG_Output
+GPIOC_13_Toggle
+Delay
